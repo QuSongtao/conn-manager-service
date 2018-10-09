@@ -10,6 +10,5 @@ public class ConnManagerBoot {
 
     public static void main(String[] args) {
         SpringApplication.run(ConnManagerBoot.class, args);
-
     }
 }
