@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/log")
+@RequestMapping("/mgr/log")
 public class LogController {
     @Autowired
     private LogService logService;

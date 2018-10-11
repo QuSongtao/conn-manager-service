@@ -16,5 +16,9 @@ spring:
   application:
     name: conn-manager-service
 
+logging.level.com.suncd.conn.manager.dao: debug
+spring.jackson.date-format: yyyy-MM-dd HH:mm:ss
+spring.jackson.time-zone: GMT+8
+
 
 
