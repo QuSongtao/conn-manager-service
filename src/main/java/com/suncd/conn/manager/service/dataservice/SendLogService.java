@@ -10,6 +10,6 @@ import java.util.Date;
 
 public interface SendLogService {
     Response getSendLogData(String dtStart, String dtEnd, String telId,int pageIndex,int pageSize);
-    int resend(String ids);
+    Response resend(String ids);
     Response getTelMessage(String msgId);
 }

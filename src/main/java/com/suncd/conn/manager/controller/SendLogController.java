@@ -7,23 +7,23 @@ package com.suncd.conn.manager.controller;
 import com.suncd.conn.manager.dao.SimpleDao;
 import com.suncd.conn.manager.service.dataservice.SendLogService;
 import com.suncd.conn.manager.utils.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 @RestController
 @RequestMapping("/mgr/sendLog")
 public class SendLogController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SendLogController.class);
     @Autowired
     private SendLogService sendLogService;
 
     @Autowired
     private SimpleDao simpleDao;
+
     /**
      * 获取发送日志
      *
@@ -33,14 +33,11 @@ public class SendLogController {
      * @return 电文日志记录
      */
     @RequestMapping(value = "/data", method = RequestMethod.GET)
-    public Response getLogData(String  dtStart, String dtEnd, String telId,int pageIndex,int pageSize) {
+    public Response getLogData(String dtStart, String dtEnd, String telId, int pageIndex, int pageSize) {
         try {
-            return sendLogService.getSendLogData(dtStart,dtEnd,
-//                    new SimpleDateFormat("yyyy-MM-dd").parse(dtStart),
-//                    new SimpleDateFormat("yyyy-MM-dd").parse(dtEnd),
-                    telId,pageIndex,pageSize);
+            return sendLogService.getSendLogData(dtStart, dtEnd, telId, pageIndex, pageSize);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
         return null;
     }
@@ -52,13 +49,8 @@ public class SendLogController {
      * @return 重发影响的条数
      */
     @RequestMapping(value = "/resend", method = RequestMethod.POST)
-    public Response getLogData(String ids) {
-        int ret = sendLogService.resend(ids);
-        if (ret > 0) {
-            return new Response<>().success("电文重发成功:" + ret + "条记录");
-        } else {
-            return new Response<>().failure("电文重发失败:" + ret + "条记录");
-        }
+    public Response resend(String ids) {
+        return sendLogService.resend(ids);
     }
 
     /**
@@ -76,6 +68,5 @@ public class SendLogController {
     public Response time() {
         return new Response<>().success(simpleDao.query("select now()"));
     }
-
 
 }
