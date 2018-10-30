@@ -95,7 +95,11 @@ public class FileUtil {
         StringBuilder builder = new StringBuilder();
 
         for (int i = listStr.size(); i > 0; i--) {
-            String str = listStr.get(i - 1).replaceAll(" :: ", " :: </span>")
+            String strTemp = listStr.get(i - 1);
+            if(!strTemp.contains(" :: ")){
+                strTemp = "</span>" + strTemp;
+            }
+            String str = strTemp.replaceAll(" :: ", " :: </span>")
                     .replaceAll(" ", "&nbsp;")
                     .replaceAll("INFO&nbsp;-", "<span class='log-lv-info'>INFO&nbsp;-</span>")
                     .replaceAll("WARN&nbsp;-", "<span class='log-lv-warn'>WARN&nbsp;-</span>")
@@ -103,7 +107,6 @@ public class FileUtil {
             builder.append("<span class='log-lv-title'>").append(str).append("<br/>");
         }
         try {
-
             retStr = new String(builder.toString().getBytes("ISO-8859-1"), "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

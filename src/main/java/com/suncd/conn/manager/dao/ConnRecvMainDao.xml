@@ -18,6 +18,11 @@
     from conn_recv_main
     where id = #{id,jdbcType=CHAR}
   </select>
+  <select id="countAll" resultType="java.lang.Integer">
+    select
+    count(id)
+    from conn_recv_main
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from conn_recv_main
     where id = #{id,jdbcType=CHAR}

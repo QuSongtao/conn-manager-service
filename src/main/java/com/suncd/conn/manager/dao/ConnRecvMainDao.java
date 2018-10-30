@@ -9,6 +9,8 @@ public interface ConnRecvMainDao {
 
     int insertSelective(ConnRecvMain record);
 
+    int countAll();
+
     ConnRecvMain selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(ConnRecvMain record);
