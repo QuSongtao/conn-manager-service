@@ -43,7 +43,8 @@ public class SendLogServiceImp implements SendLogService {
     @Override
     public Response getSendLogData(String dtStart, String dtEnd, String telId, int pageIndex, int pageSize) {
         PageHelper.startPage(pageIndex, pageSize);
-        Page<ConnSendMainHis> page = (Page<ConnSendMainHis>) connSendMainHisDao.findBySendTimeAndTelId(dtStart, dtEnd, telId);
+        Page<ConnSendMainHis> page = (Page<ConnSendMainHis>) connSendMainHisDao.findBySendTimeAndTelId(
+                dtStart + " 00:00:00", dtEnd + "23:59:59", telId);
         PageResponse<ConnSendMainHis> pageResponse = new PageResponse<>(page.getTotal(), page.getResult());
         return new Response<>().success(pageResponse);
     }
