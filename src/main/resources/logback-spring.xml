@@ -44,9 +44,20 @@
         </filter>
     </appender>
 
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <remoteHost>192.168.1.63</remoteHost>
+        <port>9601</port>
+        <!-- encoder必须配置,有多种可选 -->
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" >
+            <!-- "appname":"yang_test" 的作用是指定创建索引的名字时用，并且在生成的文档中会多了这个字段  -->
+            <customFields>{"appname":"conn-manager"}</customFields>
+        </encoder>
+    </appender>
+
     <root level="INFO">
         <appender-ref ref="StdoutAppender"/>
         <appender-ref ref="sysLogAppender"/>
+        <appender-ref ref="LOGSTASH"/>
     </root>
 
     <!-- 异常及警告输出到系统日志中 -->
@@ -54,17 +65,5 @@
         <appender-ref ref="StdoutAppender"/>
         <appender-ref ref="sysLogAppender"/>
     </logger>
-
-    <!--&lt;!&ndash; 发送消息记录到发送日志中 &ndash;&gt;-->
-    <!--<logger name="com.suncd.conn.manager.service.messageservice.sender" level="info" additivity="false">-->
-        <!--<appender-ref ref="StdoutAppender"/>-->
-        <!--<appender-ref ref="sysLogAppender"/>-->
-    <!--</logger>-->
-
-    <!--&lt;!&ndash; 接收消息记录到接收日志中 &ndash;&gt;-->
-    <!--<logger name="com.suncd.conn.manager.service.messageservice.listener" level="info" additivity="false">-->
-        <!--<appender-ref ref="StdoutAppender"/>-->
-        <!--<appender-ref ref="sysLogAppender"/>-->
-    <!--</logger>-->
 
 </configuration>
