@@ -12,6 +12,7 @@ public interface ConnConfTelDao {
     int insertSelective(ConnConfTel record);
 
     ConnConfTel selectByPrimaryKey(String id);
+
     List<ConnConfTel> selectByTelId(String TelId);
 
     int updateByPrimaryKeySelective(ConnConfTel record);

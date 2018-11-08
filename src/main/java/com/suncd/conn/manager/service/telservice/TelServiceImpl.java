@@ -13,6 +13,8 @@ import com.suncd.conn.manager.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class TelServiceImpl implements TelService {
     @Autowired
@@ -21,14 +23,20 @@ public class TelServiceImpl implements TelService {
     @Override
     public Response getTelConfig(String telId, int pageIndex, int pageSize) {
         PageHelper.startPage(pageIndex, pageSize);
-        Page<ConnConfTel> page = (Page<ConnConfTel>)connConfTelDao.selectByTelId(telId);
-        PageResponse<ConnConfTel> pageResponse = new PageResponse<>(page.getTotal(),page.getResult());
+        Page<ConnConfTel> page = (Page<ConnConfTel>) connConfTelDao.selectByTelId(telId);
+        PageResponse<ConnConfTel> pageResponse = new PageResponse<>(page.getTotal(), page.getResult());
         return new Response<>().success(pageResponse);
     }
 
     @Override
     public int updateTel(ConnConfTel connConfTel) {
         return connConfTelDao.updateByPrimaryKeySelective(connConfTel);
+    }
+
+    @Override
+    public int saveTel(ConnConfTel connConfTel) {
+        connConfTel.setId(UUID.randomUUID().toString());
+        return connConfTelDao.insertSelective(connConfTel);
     }
 
     @Override
