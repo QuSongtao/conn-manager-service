@@ -4,7 +4,7 @@ http://www.suncd.com
 */
 package com.suncd.conn.manager.controller;
 
-import com.suncd.conn.manager.service.logservice.LogService;
+import com.suncd.conn.manager.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

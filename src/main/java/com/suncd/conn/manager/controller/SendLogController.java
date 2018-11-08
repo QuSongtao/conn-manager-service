@@ -5,7 +5,7 @@ http://www.suncd.com
 package com.suncd.conn.manager.controller;
 
 import com.suncd.conn.manager.dao.SimpleDao;
-import com.suncd.conn.manager.service.dataservice.SendLogService;
+import com.suncd.conn.manager.service.SendLogService;
 import com.suncd.conn.manager.utils.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

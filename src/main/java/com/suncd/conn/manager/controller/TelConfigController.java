@@ -5,7 +5,7 @@ http://www.suncd.com
 package com.suncd.conn.manager.controller;
 
 import com.suncd.conn.manager.entity.ConnConfTel;
-import com.suncd.conn.manager.service.telservice.TelService;
+import com.suncd.conn.manager.service.TelService;
 import com.suncd.conn.manager.utils.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

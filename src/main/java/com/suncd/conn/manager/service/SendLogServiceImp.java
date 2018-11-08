@@ -2,7 +2,7 @@
 成都太阳高科技有限责任公司
 http://www.suncd.com
 */
-package com.suncd.conn.manager.service.dataservice;
+package com.suncd.conn.manager.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;

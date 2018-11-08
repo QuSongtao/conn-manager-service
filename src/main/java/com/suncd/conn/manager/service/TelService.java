@@ -1,4 +1,4 @@
-package com.suncd.conn.manager.service.telservice;
+package com.suncd.conn.manager.service;
 
 import com.suncd.conn.manager.entity.ConnConfTel;
 import com.suncd.conn.manager.utils.Response;

@@ -4,7 +4,7 @@ http://www.suncd.com
 */
 package com.suncd.conn.manager.controller;
 
-import com.suncd.conn.manager.service.dataservice.CountService;
+import com.suncd.conn.manager.service.CountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
