@@ -50,7 +50,7 @@ public class TelConfigController {
     public Response update(ConnConfTel connConfTel) {
         int k = telService.updateTel(connConfTel);
         if (k >= 0) {
-            return new Response<>().success();
+            return new Response<>().success("成功!");
         } else {
             return new Response<>().failure("数据更新失败!");
         }
@@ -88,13 +88,13 @@ public class TelConfigController {
     }
 
     /**
-     * 根据消息ID查找报文信息
+     * 获取详情信息
      *
      * @param id 消息ID
-     * @return 消息内容
+     * @return 电文配置详情
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Response getTelMessage(@PathVariable("id") String id) {
+    public Response getInfo(@PathVariable("id") String id) {
         return telService.getTelById(id);
     }
 

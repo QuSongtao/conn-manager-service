@@ -20,6 +20,19 @@
     from conn_recv_main_his
     where id = #{id,jdbcType=CHAR}
   </select>
+
+  <!--按发送时间和电文id查询接收历史-->
+  <select id="findByRecvTimeAndTelId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from conn_recv_main_his
+    where recvTime &gt;= #{dtStart} and recvTime &lt;= #{dtEnd}
+    <if test="telId != null">
+      and telId like CONCAT('%',#{telId,jdbcType=VARCHAR},'%')
+    </if>
+    order by recvTime asc
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from conn_recv_main_his
     where id = #{id,jdbcType=CHAR}
