@@ -15,6 +15,9 @@ spring:
       read-only: false
   application:
     name: conn-manager-service
+system:
+  username: admin
+  password: connadmin
 
 logging.level.com.suncd.conn.manager.dao: debug
 spring.jackson.date-format: yyyy-MM-dd HH:mm:ss

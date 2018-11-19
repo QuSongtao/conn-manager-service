@@ -20,7 +20,13 @@ public class LogController {
     @Autowired
     private LogService logService;
 
-    @RequestMapping(value = "/getLogFiles", method = RequestMethod.GET)
+    /**
+     * 获取文件列表
+     *
+     * @param pathIndex 路径索引
+     * @return 文件列表
+     */
+    @RequestMapping(value = "/files", method = RequestMethod.GET)
     public List<Map<String, String>> getLogFiles(String pathIndex) {
         return logService.getLogFiles(pathIndex);
     }
@@ -31,8 +37,8 @@ public class LogController {
      * @return 文件内容
      */
     @RequestMapping(value = "/lastNLines", method = RequestMethod.GET)
-    public String lastNLines(String pathIndex,String fileName) {
-        return logService.logContentNl(pathIndex,fileName);
+    public String lastNLines(String pathIndex, String fileName) {
+        return logService.logContentNl(pathIndex, fileName);
     }
 
     /**
@@ -41,8 +47,8 @@ public class LogController {
      * @return 文件内容
      */
     @RequestMapping(value = "/content", method = RequestMethod.GET)
-    public String content(String pathIndex,String fileName) {
-        return logService.logContent(pathIndex,fileName);
+    public String content(String pathIndex, String fileName) {
+        return logService.logContent(pathIndex, fileName);
     }
 
     /**
@@ -52,7 +58,7 @@ public class LogController {
      */
     @RequestMapping(value = "/download", method = RequestMethod.GET)
     public void download(HttpServletResponse response, String pathIndex, String fileName) {
-        logService.downloadContent(response,pathIndex,fileName);
+        logService.downloadContent(response, pathIndex, fileName);
     }
 
 }
