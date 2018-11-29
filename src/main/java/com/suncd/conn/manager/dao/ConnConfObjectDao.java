@@ -1,6 +1,7 @@
 package com.suncd.conn.manager.dao;
 
 import com.suncd.conn.manager.entity.ConnConfObject;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface ConnConfObjectDao {
 
     ConnConfObject selectByPrimaryKey(String id);
 
-    List<ConnConfObject> selectByType(String objType, String transferType);
+    List<ConnConfObject> selectByType(@Param("objType") String objType, @Param("transferType") String transferType);
 
     int updateByPrimaryKeySelective(ConnConfObject record);
 
