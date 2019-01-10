@@ -26,9 +26,9 @@
     select
     <include refid="Base_Column_List" />
     from conn_recv_main_his
-    where recvTime &gt;= #{dtStart} and recvTime &lt;= #{dtEnd}
+    where recvTime &gt;= to_date(#{dtStart},'yyyy-MM-dd hh24:mi:ss')  and recvTime &lt;= to_date(#{dtEnd},'yyyy-MM-dd hh24:mi:ss')
     <if test="telId != null">
-      and telId like CONCAT('%',#{telId,jdbcType=VARCHAR},'%')
+      and telId like '%'||#{telId,jdbcType=VARCHAR}||'%'
     </if>
     order by recvTime asc
   </select>
