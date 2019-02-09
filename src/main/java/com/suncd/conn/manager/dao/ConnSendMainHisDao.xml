@@ -27,9 +27,9 @@
     select
     <include refid="Base_Column_List" />
     from conn_send_main_his
-    where sendTime &gt;= #{dtStart} and sendTime &lt;= #{dtEnd}
+    where sendTime &gt;= to_date(#{dtStart},'yyyy-MM-dd hh24:mi:ss') and sendTime &lt;= to_date(#{dtEnd},'yyyy-MM-dd hh24:mi:ss')
     <if test="telId != null">
-      and telId like CONCAT('%',#{telId,jdbcType=VARCHAR},'%')
+      and telId like '%'||#{telId,jdbcType=VARCHAR}||'%'
     </if>
     order by sendTime asc
   </select>
