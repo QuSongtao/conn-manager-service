@@ -1,13 +1,13 @@
 server:
-  port: 8083
+  port: 8081
 
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@192.168.1.65:1521:orcl
-    username: CONN
-    password: 123456
+    url: jdbc:oracle:thin:@${ORACLE_URL:192.168.1.65:1521:orcl}
+    username: ${ORACLE_USERNAME:CONN}
+    password: ${ORACLE_PASSWORD:123456}
     hikari:
       maximum-pool-size: 20
       minimum-idle: 10
@@ -17,7 +17,7 @@ spring:
     name: conn-manager-service
 system:
   username: admin
-  password: connadmin
+  password: ${SYS_PASSWORD:connadmin}
 
 logging.level.com.suncd.conn.manager.dao: debug
 spring.jackson.date-format: yyyy-MM-dd HH:mm:ss
