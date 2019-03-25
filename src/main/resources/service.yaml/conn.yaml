@@ -1,0 +1,61 @@
+version: '3.6'
+services:
+  # 后台管理服务
+  manager:
+    image: image.ansteel.com/library/conn-manager-service:1.0.0
+    networks:
+      - cloud-net
+    ports:
+      - "8081:8081"
+    volumes:
+      # 日志挂载
+      - /data/services/logs:/data/logs
+    environment:
+      - ORACLE_URL=192.168.1.65:1521:orcl
+      - ORACLE_USERNAME=CONN
+      - ORACLE_PASSWORD=123456
+      - SYS_PASSWORD=connadmin
+  # IBMMQ通信服务
+  Ibmmq:
+    image: image.ansteel.com/library/conn-ibmmq-service:1.0.0
+    networks:
+      - cloud-net
+    ports:
+      - "8082:8082"
+    volumes:
+      # 日志挂载
+      - /data/services/logs:/data/logs
+    environment:
+      - ORACLE_URL=192.168.1.65:1521:orcl
+      - ORACLE_USERNAME=CONN
+      - ORACLE_PASSWORD=123456
+      - IBM_MQ_QMGR=TEST.QM
+      - IBM_MQ_HOST=192.168.1.66
+      - IBM_MQ_PORT=1414
+      - IBM_MQ_MQM_PASSWORD=mqm
+  # SOCKET通信服务
+  netty:
+    image: image.ansteel.com/library/conn-netty-service:1.0.1
+    network_mode: "bridge"
+      #networks:
+      #  - host
+      #cloud-net:
+    #  ipv4_address: 192.168.1.80
+    ports:
+      - "8083:8083"
+      - "7879:7879"
+    volumes:
+      # 日志挂载
+      - /data/services/logs:/data/logs
+    environment:
+      - ORACLE_URL=192.168.1.65:1521:orcl
+      - ORACLE_USERNAME=CONN
+      - ORACLE_PASSWORD=123456
+      - NETTY_LOCAL_ADDR=192.168.1.78
+      - NETTY_LOCAL_PORT=7879
+      - NETTY_REMOTE_ADDR=192.168.1.61
+      - NETTY_REMOTE_PORT=7878
+networks:
+  cloud-net:
+    external:
+      name: cloud-net

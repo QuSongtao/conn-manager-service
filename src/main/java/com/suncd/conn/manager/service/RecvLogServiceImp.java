@@ -60,12 +60,14 @@ public class RecvLogServiceImp implements RecvLogService {
 
             // 组装重新处理的数据
             ConnRecvMain connRecvMain = new ConnRecvMain();
-            connRecvMain.setId(UUID.randomUUID().toString());            // 主键
-            connRecvMain.setMsgId(connRecvMainHis.getMsgId());           // 消息ID
-            connRecvMain.setRecvTime(connRecvMainHis.getRecvTime());     // 记录创建时间,取第一次插入的时间
-            connRecvMain.setTelId(connRecvMainHis.getTelId());           // 电文ID
-            connRecvMain.setTelType(connRecvMainHis.getTelType());       // 消息类型 MQ-MQ通信 SK-socket通信
-            connRecvMain.setDealFlag("0");                               // 处理标识 0-未处理 1-已处理
+            connRecvMain.setId(UUID.randomUUID().toString());                // 主键
+            connRecvMain.setMsgId(connRecvMainHis.getMsgId());               // 消息ID
+            connRecvMain.setRecvTime(connRecvMainHis.getRecvTime());         // 记录创建时间,取第一次插入的时间
+            connRecvMain.setTelId(connRecvMainHis.getTelId());               // 电文ID
+            connRecvMain.setSender(connRecvMainHis.getSender());             // 发送者编码
+            connRecvMain.setSenderName(connRecvMainHis.getSenderName());     // 发送者名称
+            connRecvMain.setReceiver(connRecvMainHis.getReceiver());         // 接收者编码
+            connRecvMain.setReceiverName(connRecvMainHis.getReceiverName()); // 接收者名称
             connRecvMainDao.insertSelective(connRecvMain);
         }
         // 返回处理的记录数量

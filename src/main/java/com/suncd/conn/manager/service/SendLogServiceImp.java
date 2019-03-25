@@ -64,12 +64,14 @@ public class SendLogServiceImp implements SendLogService {
 
             // 组装重发数据
             ConnSendMain connSendMain = new ConnSendMain();
-            connSendMain.setId(UUID.randomUUID().toString());            // 主键
-            connSendMain.setMsgId(connSendMainHis.getMsgId());           // 消息ID
-            connSendMain.setCreateTime(connSendMainHis.getCreateTime()); // 记录创建时间,取第一次插入的时间
-            connSendMain.setTelId(connSendMainHis.getTelId());           // 电文ID
-            connSendMain.setTelType(connSendMainHis.getTelType());       // 消息类型 MQ-MQ通信 SK-socket通信
-            connSendMain.setSendFlag("0");                               // 发送标识 0-未发送 1-已发送
+            connSendMain.setId(UUID.randomUUID().toString());                // 主键
+            connSendMain.setMsgId(connSendMainHis.getMsgId());               // 消息ID
+            connSendMain.setCreateTime(connSendMainHis.getCreateTime());     // 记录创建时间,取第一次插入的时间
+            connSendMain.setTelId(connSendMainHis.getTelId());               // 电文ID
+            connSendMain.setSender(connSendMainHis.getSender());             // 发送者编码
+            connSendMain.setSenderName(connSendMainHis.getSenderName());     // 发送者名称
+            connSendMain.setReceiver(connSendMainHis.getReceiver());         // 接收者编码
+            connSendMain.setReceiverName(connSendMainHis.getReceiverName()); // 接收者名称
             connSendMainDao.insertSelective(connSendMain);
         }
         // 返回处理的记录数量

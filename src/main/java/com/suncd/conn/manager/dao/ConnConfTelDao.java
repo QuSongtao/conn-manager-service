@@ -7,8 +7,6 @@ import java.util.List;
 public interface ConnConfTelDao {
     int deleteByPrimaryKey(String id);
 
-    int insert(ConnConfTel record);
-
     int insertSelective(ConnConfTel record);
 
     ConnConfTel selectByPrimaryKey(String id);
