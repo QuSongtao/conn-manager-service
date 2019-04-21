@@ -1,5 +1,7 @@
 package com.suncd.conn.manager.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,7 +12,7 @@ public class ConnConfUser implements Serializable {
     /**
      * 主键id
      */
-    private Integer id;
+    private String  id;
 
     /**
      * 登录账号
@@ -35,6 +37,7 @@ public class ConnConfUser implements Serializable {
     /**
      * 上次登录时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastLoginTime;
 
     /**
@@ -49,11 +52,11 @@ public class ConnConfUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

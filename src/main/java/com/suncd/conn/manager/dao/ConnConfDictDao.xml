@@ -18,6 +18,13 @@
     from conn_conf_dict
     where id = #{id,jdbcType=CHAR}
   </select>
+  <select id="selectByTypeCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from conn_conf_dict
+    where typeCode = #{typeCode,jdbcType=VARCHAR}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from conn_conf_dict
     where id = #{id,jdbcType=CHAR}
