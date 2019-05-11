@@ -60,12 +60,23 @@ public class ConnConfUserServiceImpl implements ConnConfUserService {
         }
     }
 
+    /**
+     * 只能修改自己的信息
+     *
+     * @param connConfUser
+     * @return
+     */
     @Override
     public Response updateUser(ConnConfUser connConfUser) {
         if(connConfUser.getLoginName().equals("admin")){
             ConnConfUser user = connConfUserDao.selectByToken(RequestUtil.currentToken());
             if(!user.getLoginName().equals("admin")){
                 return new Response<>().failure("admin用户只能本人修改!");
+            }
+        }else{
+            ConnConfUser user = connConfUserDao.selectByToken(RequestUtil.currentToken());
+            if(!user.getLoginName().equals(connConfUser.getLoginName()) && !user.getLoginName().equals("admin") && user.getIsAdmin().equals("0")){
+                return new Response<>().failure("普通用户只能修改本人信息!");
             }
         }
         int ret = connConfUserDao.updateByPrimaryKeySelective(connConfUser);
