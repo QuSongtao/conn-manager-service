@@ -6,12 +6,11 @@ package com.suncd.conn.manager.service;
 
 import com.suncd.conn.manager.dao.ConnConfDictDao;
 import com.suncd.conn.manager.entity.ConnConfDict;
+import com.suncd.conn.manager.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ConnConfDictServiceImpl implements ConnConfDictService {
@@ -20,11 +19,36 @@ public class ConnConfDictServiceImpl implements ConnConfDictService {
 
     @Override
     public List<ConnConfDict> getByCode(String typeCode) {
-//        Map<String, String> ret = new HashMap<>();
         return connConfDictDao.selectByTypeCode(typeCode);
-//        for(ConnConfDict c : connConfDicts){
-//            ret.put(c.getCode(),c.getName());
-//        }
-//        return ret;
+    }
+
+    @Override
+    public Response saveDict(ConnConfDict connConfDict) {
+        int ret = connConfDictDao.insertSelective(connConfDict);
+        if(ret >= 0){
+            return new Response<>().success("保存成功!");
+        }else{
+            return new Response<>().failure("保存失败!");
+        }
+    }
+
+    @Override
+    public Response updateDict(ConnConfDict connConfDict) {
+        int ret = connConfDictDao.updateByPrimaryKeySelective(connConfDict);
+        if(ret >= 0){
+            return new Response<>().success("保存成功!");
+        }else{
+            return new Response<>().failure("保存失败!");
+        }
+    }
+
+    @Override
+    public Response del(String id) {
+        int ret = connConfDictDao.deleteByPrimaryKey(id);
+        if(ret >= 0){
+            return new Response<>().success("删除成功!");
+        }else{
+            return new Response<>().failure("删除失败!");
+        }
     }
 }

@@ -2,6 +2,8 @@ package com.suncd.conn.manager.dao;
 
 import com.suncd.conn.manager.entity.ConnConfSyscode;
 
+import java.util.List;
+
 public interface ConnConfSyscodeDao {
     int deleteByPrimaryKey(String id);
 
@@ -10,6 +12,8 @@ public interface ConnConfSyscodeDao {
     int insertSelective(ConnConfSyscode record);
 
     ConnConfSyscode selectByPrimaryKey(String id);
+
+    List<ConnConfSyscode> findAll();
 
     int updateByPrimaryKeySelective(ConnConfSyscode record);
 

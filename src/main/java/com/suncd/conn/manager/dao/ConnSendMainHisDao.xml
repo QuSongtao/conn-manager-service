@@ -14,9 +14,10 @@
     <result column="pushLongTime" jdbcType="INTEGER" property="pushLongTime" />
     <result column="pushSeqNo" jdbcType="INTEGER" property="pushSeqNo" />
     <result column="sendTime" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="sendResult" jdbcType="VARCHAR" property="sendResult" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, telId,  sender,senderName,receiver,receiverName, msgId, sendFlag, createTime, pushLongTime, pushSeqNo, sendTime
+    id, telId,  sender,senderName,receiver,receiverName, msgId, sendFlag, createTime, pushLongTime, pushSeqNo, sendTime, sendResult
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 

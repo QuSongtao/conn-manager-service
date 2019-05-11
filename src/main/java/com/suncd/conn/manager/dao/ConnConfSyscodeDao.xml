@@ -18,6 +18,14 @@
     from conn_conf_syscode
     where id = #{id,jdbcType=CHAR}
   </select>
+
+  <select id="findAll"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from conn_conf_syscode
+    order by sysName asc
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from conn_conf_syscode
     where id = #{id,jdbcType=CHAR}

@@ -31,6 +31,7 @@ public class ConnSendMainHis implements Serializable {
      * 发送标识:0-未发送,1-已发送
      */
     private String sendFlag;
+    private String sendResult;
 
     /**
      * 记录创建时间
@@ -53,6 +54,14 @@ public class ConnSendMainHis implements Serializable {
     private Date sendTime;
 
     private static final long serialVersionUID = 1L;
+
+    public String getSendResult() {
+        return sendResult;
+    }
+
+    public void setSendResult(String sendResult) {
+        this.sendResult = sendResult;
+    }
 
     public String getId() {
         return id;
