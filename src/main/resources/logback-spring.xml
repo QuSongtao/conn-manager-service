@@ -24,12 +24,13 @@
 
     <!-- 系统日志、异常日志 -->
     <appender name="sysLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/mgr/sysLog/out.log</file>
+        <!--<file>logs/mgr/sysLog/out.log</file>-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- rollover daily -->
             <fileNamePattern>logs/mgr/sysLog/out_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <!--保留时间,单位:天-->
-            <maxHistory>30</maxHistory>
+            <maxHistory>${MAX_LOG_HISTORY:-30}</maxHistory>
+            <CleanHistoryOnStart>true</CleanHistoryOnStart>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <!-- or whenever the file size reaches 10MB -->
                 <maxFileSize>10MB</maxFileSize>
