@@ -8,6 +8,7 @@ import com.suncd.conn.manager.utils.Response;
 
 public interface RecvLogService {
     Response getRecvLogData(String dtStart, String dtEnd, String telId, int pageIndex, int pageSize);
+    Response getRecvMainData(String dtStart, String dtEnd, String telId, int pageIndex, int pageSize);
     Response reDeal(String ids);
     Response getTelMessage(String msgId);
 }

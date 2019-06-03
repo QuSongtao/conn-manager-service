@@ -19,7 +19,7 @@ public class RecvLogController {
     private RecvLogService recvLogService;
 
     /**
-     * 获取接收日志
+     * 获取接收历史表日志
      *
      * @param dtStart 接收开始时间
      * @param dtEnd   接收结束时间
@@ -30,6 +30,24 @@ public class RecvLogController {
     public Response getLogData(String dtStart, String dtEnd, String telId, int pageIndex, int pageSize) {
         try {
             return recvLogService.getRecvLogData(dtStart, dtEnd, telId, pageIndex, pageSize);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    /**
+     * 获取接收总表日志
+     *
+     * @param dtStart 接收开始时间
+     * @param dtEnd   接收结束时间
+     * @param telId   报文ID
+     * @return 电文日志记录
+     */
+    @RequestMapping(value = "/mainData", method = RequestMethod.GET)
+    public Response getLogMainData(String dtStart, String dtEnd, String telId, int pageIndex, int pageSize) {
+        try {
+            return recvLogService.getRecvMainData(dtStart, dtEnd, telId, pageIndex, pageSize);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
         }

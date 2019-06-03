@@ -25,6 +25,19 @@
     count(id)
     from conn_recv_main
   </select>
+
+  <!--按发送时间和电文id查询接收历史-->
+  <select id="findByRecvTimeAndTelId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from conn_recv_main
+    where recvTime &gt;= to_date(#{dtStart},'yyyy-MM-dd hh24:mi:ss')  and recvTime &lt;= to_date(#{dtEnd},'yyyy-MM-dd hh24:mi:ss')
+    <if test="telId != null">
+      and telId like '%'||#{telId,jdbcType=VARCHAR}||'%'
+    </if>
+    order by recvTime asc
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from conn_recv_main
     where id = #{id,jdbcType=CHAR}

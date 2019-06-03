@@ -45,6 +45,15 @@ public class RecvLogServiceImp implements RecvLogService {
         return new Response<>().success(pageResponse);
     }
 
+    @Override
+    public Response getRecvMainData(String dtStart, String dtEnd, String telId, int pageIndex, int pageSize) {
+        PageHelper.startPage(pageIndex, pageSize);
+        Page<ConnRecvMain> page = (Page<ConnRecvMain>) connRecvMainDao.findByRecvTimeAndTelId(
+                dtStart + " 00:00:00", dtEnd + "23:59:59", telId);
+        PageResponse<ConnRecvMain> pageResponse = new PageResponse<>(page.getTotal(), page.getResult());
+        return new Response<>().success(pageResponse);
+    }
+
     /**
      * 报文重接收处理
      *
