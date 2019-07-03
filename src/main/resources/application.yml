@@ -20,7 +20,7 @@ system:
   password: ${SYS_PASSWORD:connadmin}
 
 logging.level.com.suncd.conn.manager.dao: debug
-spring.jackson.date-format: yyyy-MM-dd HH:mm:ss
+spring.jackson.date-format: yyyy-MM-dd HH:mm:ss.SSS
 spring.jackson.time-zone: GMT+8
 
 
