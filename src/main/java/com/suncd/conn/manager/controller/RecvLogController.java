@@ -61,7 +61,7 @@ public class RecvLogController {
      * @return 影响的条数
      */
     @RequestMapping(value = "/reDeal", method = RequestMethod.POST)
-    public Response resend(String ids) {
+    public Response reDeal(String ids) {
         return recvLogService.reDeal(ids);
     }
 
