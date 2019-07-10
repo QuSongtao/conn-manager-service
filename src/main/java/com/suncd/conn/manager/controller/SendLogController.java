@@ -4,7 +4,6 @@ http://www.suncd.com
 */
 package com.suncd.conn.manager.controller;
 
-import com.suncd.conn.manager.dao.SimpleDao;
 import com.suncd.conn.manager.service.SendLogService;
 import com.suncd.conn.manager.utils.Response;
 import org.slf4j.Logger;
@@ -18,9 +17,6 @@ public class SendLogController {
     private static final Logger LOGGER = LoggerFactory.getLogger(SendLogController.class);
     @Autowired
     private SendLogService sendLogService;
-
-    @Autowired
-    private SimpleDao simpleDao;
 
     /**
      * 获取发送日志
