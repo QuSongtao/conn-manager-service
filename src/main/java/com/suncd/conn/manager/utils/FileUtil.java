@@ -117,15 +117,16 @@ public class FileUtil {
         if (null == files) {
             return ret;
         }
-        List<File> fileList = Arrays.asList(files);
-        Collections.sort(fileList, (File o1, File o2) -> {
-            if (o1.isDirectory() && o2.isFile())
-                return -1;
-            if (o1.isFile() && o2.isDirectory())
+        Arrays.sort(files, (File o1, File o2) -> {
+            long diff = o1.lastModified() - o2.lastModified();
+            if (diff > 0)
                 return 1;
-            return o1.getName().compareTo(o2.getName());
+            else if (diff == 0)
+                return 0;
+            else
+                return -1;
         });
-        for (File f : fileList) {
+        for (File f : files) {
             Map<String, String> map = new HashMap<>();
             map.put("fileName", f.getName());
 
