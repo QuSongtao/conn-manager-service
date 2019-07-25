@@ -12,10 +12,7 @@ import org.springframework.util.CollectionUtils;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FileUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(FileUtil.class);
@@ -96,7 +93,7 @@ public class FileUtil {
 
         for (int i = listStr.size(); i > 0; i--) {
             String strTemp = listStr.get(i - 1);
-            if(!strTemp.contains(" :: ")){
+            if (!strTemp.contains(" :: ")) {
                 strTemp = "</span>" + strTemp;
             }
             String str = strTemp.replaceAll(" :: ", " :: </span>")
@@ -120,7 +117,15 @@ public class FileUtil {
         if (null == files) {
             return ret;
         }
-        for (File f : files) {
+        List<File> fileList = Arrays.asList(files);
+        Collections.sort(fileList, (File o1, File o2) -> {
+            if (o1.isDirectory() && o2.isFile())
+                return -1;
+            if (o1.isFile() && o2.isDirectory())
+                return 1;
+            return o1.getName().compareTo(o2.getName());
+        });
+        for (File f : fileList) {
             Map<String, String> map = new HashMap<>();
             map.put("fileName", f.getName());
 
