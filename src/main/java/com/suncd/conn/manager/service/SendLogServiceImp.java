@@ -16,6 +16,7 @@ import com.suncd.conn.manager.utils.PageResponse;
 import com.suncd.conn.manager.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.UUID;
 
@@ -41,10 +42,14 @@ public class SendLogServiceImp implements SendLogService {
      * @return 发送日志分页数据
      */
     @Override
-    public Response getSendLogData(String dtStart, String dtEnd, String telId, int pageIndex, int pageSize) {
+    public Response getSendLogData(String dtStart, String dtEnd, String telId,String receiverIn, int pageIndex, int pageSize) {
         PageHelper.startPage(pageIndex, pageSize);
+        String receiver = receiverIn;
+        if(StringUtils.isEmpty(receiverIn)){
+            receiver = null;
+        }
         Page<ConnSendMainHis> page = (Page<ConnSendMainHis>) connSendMainHisDao.findBySendTimeAndTelId(
-                dtStart + " 00:00:00", dtEnd + "23:59:59", telId);
+                dtStart + " 00:00:00", dtEnd + "23:59:59", telId, receiver);
         PageResponse<ConnSendMainHis> pageResponse = new PageResponse<>(page.getTotal(), page.getResult());
         return new Response<>().success(pageResponse);
     }

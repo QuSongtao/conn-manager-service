@@ -9,7 +9,9 @@ import com.suncd.conn.manager.utils.Response;
 import java.util.Date;
 
 public interface SendLogService {
-    Response getSendLogData(String dtStart, String dtEnd, String telId,int pageIndex,int pageSize);
+    Response getSendLogData(String dtStart, String dtEnd, String telId, String receiverIn, int pageIndex, int pageSize);
+
     Response resend(String ids);
+
     Response getTelMessage(String msgId);
 }

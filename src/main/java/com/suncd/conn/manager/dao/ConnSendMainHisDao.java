@@ -13,5 +13,6 @@ public interface ConnSendMainHisDao {
 
     List<ConnSendMainHis> findBySendTimeAndTelId(@Param("dtStart") String dtStart,
                                                  @Param("dtEnd") String dtEnd,
-                                                 @Param("telId") String telId);
+                                                 @Param("telId") String telId,
+                                                 @Param("receiver") String receiver);
 }

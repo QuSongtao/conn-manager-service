@@ -24,7 +24,7 @@
     where id = #{id,jdbcType=CHAR}
   </select>
 
-  <!--按发送时间和电文id查询接收历史-->
+  <!--按发送时间、电文id、通信系统编码查询接收历史-->
   <select id="findByRecvTimeAndTelId" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -32,6 +32,9 @@
     where recvTime &gt;= to_date(#{dtStart},'yyyy-MM-dd hh24:mi:ss')  and recvTime &lt;= to_date(#{dtEnd},'yyyy-MM-dd hh24:mi:ss')
     <if test="telId != null">
       and telId like '%'||#{telId,jdbcType=VARCHAR}||'%'
+    </if>
+    <if test="sender != null">
+      and sender = #{sender,jdbcType=VARCHAR}
     </if>
     order by recvTime asc
   </select>

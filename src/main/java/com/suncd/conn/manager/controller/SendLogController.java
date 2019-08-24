@@ -27,9 +27,9 @@ public class SendLogController {
      * @return 电文日志记录
      */
     @RequestMapping(value = "/data", method = RequestMethod.GET)
-    public Response getLogData(String dtStart, String dtEnd, String telId, int pageIndex, int pageSize) {
+    public Response getLogData(String dtStart, String dtEnd, String telId, String receiver, int pageIndex, int pageSize) {
         try {
-            return sendLogService.getSendLogData(dtStart, dtEnd, telId, pageIndex, pageSize);
+            return sendLogService.getSendLogData(dtStart, dtEnd, telId, receiver, pageIndex, pageSize);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
         }

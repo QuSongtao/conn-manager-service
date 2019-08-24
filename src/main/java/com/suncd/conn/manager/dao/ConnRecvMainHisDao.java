@@ -12,5 +12,6 @@ public interface ConnRecvMainHisDao {
 
     List<ConnRecvMainHis> findByRecvTimeAndTelId(@Param("dtStart") String dtStart,
                                                  @Param("dtEnd") String dtEnd,
-                                                 @Param("telId") String telId);
+                                                 @Param("telId") String telId,
+                                                 @Param("sender") String sender);
 }

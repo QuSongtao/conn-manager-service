@@ -35,6 +35,9 @@
     <if test="telId != null">
       and telId like '%'||#{telId,jdbcType=VARCHAR}||'%'
     </if>
+    <if test="receiver != null">
+      and receiver = #{receiver,jdbcType=VARCHAR}
+    </if>
     order by sendTime asc
   </select>
 </mapper>

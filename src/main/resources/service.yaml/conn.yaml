@@ -16,7 +16,7 @@ services:
       - ORACLE_PASSWORD=123456
       - SYS_PASSWORD=connadmin
   # IBMMQ通信服务
-  Ibmmq:
+  ibmmq:
     image: image.ansteel.com/library/conn-ibmmq-service:1.0.0
     networks:
       - cloud-net
