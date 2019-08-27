@@ -27,7 +27,11 @@ public class LogServiceImp implements LogService {
 
     @Override
     public String logContentNl(String pathIndex, String fileName) {
-        File f = new File(findDir(pathIndex) + fileName);
+        File fDir = new File(findDir(pathIndex));
+        List<Map<String ,String >> listFile = FileUtil.getFiles(fDir);
+        // 获取最新的文件
+        Map<String ,String > newestFile = listFile.get(listFile.size() - 1);
+        File f = new File(findDir(pathIndex) + newestFile.get("fileName"));
         return FileUtil.readLastNLineString(f,Constant.LAST_LINES);
     }
 
