@@ -36,6 +36,9 @@
     <if test="sender != null">
       and sender = #{sender,jdbcType=VARCHAR}
     </if>
+    <if test="dealFlag != null">
+      and dealFlag = #{dealFlag,jdbcType=CHAR}
+    </if>
     order by recvTime asc
   </select>
 

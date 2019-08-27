@@ -7,7 +7,7 @@ package com.suncd.conn.manager.service;
 import com.suncd.conn.manager.utils.Response;
 
 public interface RecvLogService {
-    Response getRecvLogData(String dtStart, String dtEnd, String telId, String sender, int pageIndex, int pageSize);
+    Response getRecvLogData(String dtStart, String dtEnd, String telId, String sender, String dealFlagIn, int pageIndex, int pageSize);
     Response getRecvMainData(String dtStart, String dtEnd, String telId, int pageIndex, int pageSize);
     Response reDeal(String ids);
     Response getTelMessage(String msgId);

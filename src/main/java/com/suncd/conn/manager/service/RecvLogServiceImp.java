@@ -30,23 +30,28 @@ public class RecvLogServiceImp implements RecvLogService {
     /**
      * 获取接收日志日志(分页)
      *
-     * @param dtStart   接收时间-开始
-     * @param dtEnd     接收时间-结束
-     * @param telId     电文ID
-     * @param senderIn  通信系统编码
-     * @param pageIndex 页码
-     * @param pageSize  每页显示记录条数
+     * @param dtStart    接收时间-开始
+     * @param dtEnd      接收时间-结束
+     * @param telId      电文ID
+     * @param senderIn   通信系统编码
+     * @param dealFlagIn 数据处理标识
+     * @param pageIndex  页码
+     * @param pageSize   每页显示记录条数
      * @return 接收日志分页数据
      */
     @Override
-    public Response getRecvLogData(String dtStart, String dtEnd, String telId, String senderIn, int pageIndex, int pageSize) {
+    public Response getRecvLogData(String dtStart, String dtEnd, String telId, String senderIn, String dealFlagIn, int pageIndex, int pageSize) {
         PageHelper.startPage(pageIndex, pageSize);
         String sender = senderIn;
-        if(StringUtils.isEmpty(senderIn)){
+        if (StringUtils.isEmpty(senderIn)) {
             sender = null;
         }
+        String dealFlag = dealFlagIn;
+        if (StringUtils.isEmpty(dealFlagIn)) {
+            dealFlag = null;
+        }
         Page<ConnRecvMainHis> page = (Page<ConnRecvMainHis>) connRecvMainHisDao.findByRecvTimeAndTelId(
-                dtStart + " 00:00:00", dtEnd + "23:59:59", telId, sender);
+                dtStart + " 00:00:00", dtEnd + "23:59:59", telId, sender, dealFlag);
         PageResponse<ConnRecvMainHis> pageResponse = new PageResponse<>(page.getTotal(), page.getResult());
         return new Response<>().success(pageResponse);
     }

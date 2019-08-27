@@ -25,9 +25,9 @@ public class RecvLogController {
      * @return 电文日志记录
      */
     @RequestMapping(value = "/data", method = RequestMethod.GET)
-    public Response getLogData(String dtStart, String dtEnd, String telId, String sender, int pageIndex, int pageSize) {
+    public Response getLogData(String dtStart, String dtEnd, String telId, String sender, String dealFlag, int pageIndex, int pageSize) {
         try {
-            return recvLogService.getRecvLogData(dtStart, dtEnd, telId, sender, pageIndex, pageSize);
+            return recvLogService.getRecvLogData(dtStart, dtEnd, telId, sender, dealFlag, pageIndex, pageSize);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
         }
