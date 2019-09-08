@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/mgr/conf")
+@Deprecated
 public class ConfController {
 
     @Autowired
