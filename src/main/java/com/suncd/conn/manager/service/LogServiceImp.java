@@ -70,7 +70,7 @@ public class LogServiceImp implements LogService {
         for (String message : messages) {
             messageRecoverService.recoverMessage(pathIndex.startsWith("SK"), message, retMap);
         }
-        return new Response<>().success("成功记录数:" + retMap.get("success") + ", 失败记录数:" + retMap.get("error"));
+        return new Response<>().success("恢复结果: 成功:" + retMap.get("success") + "条, 失败:" + retMap.get("error") + "条");
     }
 
     private String findDir(String logType) {

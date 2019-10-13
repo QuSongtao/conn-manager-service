@@ -130,7 +130,12 @@ public class FileUtil {
             Map<String, String> map = new HashMap<>();
             map.put("fileName", f.getName());
 
-            String fileSize = f.length() / 1000L + "KB";
+            String fileSize;
+            if(f.length() < 1000){
+                fileSize = f.length() + "B";
+            } else{
+                fileSize = f.length() / 1000L + "KB";
+            }
             map.put("fileSize", fileSize);
             ret.add(map);
         }
