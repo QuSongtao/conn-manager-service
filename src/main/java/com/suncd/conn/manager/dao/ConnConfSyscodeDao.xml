@@ -26,6 +26,13 @@
     order by sysName asc
   </select>
 
+  <select id="selectBySysCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from conn_conf_syscode
+    where sysCode = #{sysCode,jdbcType=VARCHAR}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from conn_conf_syscode
     where id = #{id,jdbcType=CHAR}

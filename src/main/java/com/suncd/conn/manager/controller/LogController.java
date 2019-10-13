@@ -5,6 +5,7 @@ http://www.suncd.com
 package com.suncd.conn.manager.controller;
 
 import com.suncd.conn.manager.service.LogService;
+import com.suncd.conn.manager.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -59,6 +60,16 @@ public class LogController {
     @RequestMapping(value = "/download", method = RequestMethod.GET)
     public void download(HttpServletResponse response, String pathIndex, String fileName) {
         logService.downloadContent(response, pathIndex, fileName);
+    }
+
+    /**
+     * 丢失消息恢复
+     *
+     * @return
+     */
+    @RequestMapping(value = "/recover", method = RequestMethod.POST)
+    public Response recover(String pathIndex, String fileName) {
+        return logService.recoverMessage(pathIndex, fileName);
     }
 
 }

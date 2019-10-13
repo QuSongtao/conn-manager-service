@@ -4,6 +4,8 @@ http://www.suncd.com
 */
 package com.suncd.conn.manager.service;
 
+import com.suncd.conn.manager.utils.Response;
+
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
@@ -13,4 +15,5 @@ public interface LogService {
     String logContentNl(String pathIndex, String fileName);
     void downloadContent(HttpServletResponse response, String pathIndex, String fileName);
     List<Map<String ,String >> getLogFiles(String pathIndex);
+    Response recoverMessage(String pathIndex, String fileName);
 }
